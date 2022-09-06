@@ -1,0 +1,51 @@
+.header {
+  background-color: #003580;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.headerContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 20px 0 100px 0;
+}
+
+.headerList {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.headerListItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.headerListItem.active {
+  border: 1px solid white;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+.headerListItem:hover {
+  background-color: #194c93;
+
+  border-radius: 20px;
+}
+
+.headerDesc {
+  margin: 20px 0px;
+}
+
+.headerButton {
+  background-color: #194c93;
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
