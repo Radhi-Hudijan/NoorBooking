@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from "./Header.module.css";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
@@ -16,6 +17,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 
 const Header = ({ type }) => {
+  const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
 
   const [date, setDate] = useState([
@@ -33,6 +35,8 @@ const Header = ({ type }) => {
     room: 1,
   });
 
+  const navigate = useNavigate();
+
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -40,6 +44,10 @@ const Header = ({ type }) => {
         [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
+  };
+
+  const handleSearch = () => {
+    navigate("/hotels", { state: { destination, date, options } });
   };
   return (
     <div className={style.header}>
@@ -86,6 +94,7 @@ const Header = ({ type }) => {
                   type="text"
                   placeholder="Where are you going ?"
                   className={style.headerSearchInput}
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
               <div className={style.headerSearchItem}>
@@ -109,6 +118,7 @@ const Header = ({ type }) => {
                     editableDateInputs={true}
                     onChange={(item) => setDate([item.selection])}
                     moveRangeOnFirstSelection={false}
+                    minDate={new Date()}
                     ranges={date}
                     className={style.date}
                   />
@@ -205,7 +215,9 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className={style.headerSearchItem}>
-                <button className={style.headerButton}>Search</button>
+                <button className={style.headerButton} onClick={handleSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>
