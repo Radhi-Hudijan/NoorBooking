@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
+const authRoute = require("./routes/auth.js");
 
 const app = express();
 
@@ -18,9 +19,9 @@ mongoose.connection.on("disconnected", () => {
   console.log("mongoDB disconnected");
 });
 
-mongoose.connection.on("connected", () => {
-  console.log("mongoDB connected");
-});
+//middleware
+
+app.use("/auth", authRoute);
 
 //connect to server
 app.listen(process.env.PORT, () => {
