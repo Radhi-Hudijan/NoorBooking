@@ -2,6 +2,9 @@ const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth.js");
+const usersRoute = require("./routes/users.js");
+const hotelsRoute = require("./routes/hotels.js");
+const roomsRoute = require("./routes/rooms.js");
 
 const app = express();
 
@@ -20,8 +23,11 @@ mongoose.connection.on("disconnected", () => {
 });
 
 //middleware
-
-app.use("/auth", authRoute);
+app.use(express.json());
+app.use("/api/auth", authRoute);
+app.use("/api/users", usersRoute);
+app.use("/api/hotels", hotelsRoute);
+app.use("/api/rooms", roomsRoute);
 
 //connect to server
 app.listen(process.env.PORT, () => {
