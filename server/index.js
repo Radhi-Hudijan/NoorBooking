@@ -23,11 +23,27 @@ mongoose.connection.on("disconnected", () => {
 });
 
 //middleware
+
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
+
+// error handling middleware
+
+app.use((error, req, res, next) => {
+  const errorStatus = error.status || 500;
+  const errorMessage = error.message || " Something went wrong ";
+  return res
+    .status(errorStatus)
+    .json({
+      success: false,
+      status: error.status,
+      message: errorMessage,
+      stack: error.stack,
+    });
+});
 
 //connect to server
 app.listen(process.env.PORT, () => {
