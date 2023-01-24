@@ -6,6 +6,7 @@ const {
   getHotel,
   getHotels,
   countByCity,
+  countByType,
 } = require("../controllers/hotel.js");
 const { verifyAdmin } = require("../utils/verifyToken.js");
 
@@ -30,6 +31,6 @@ router.get("/", getHotels);
 router.get("/countByCity", countByCity);
 
 //count by type
-router.get("/countByType", getHotels);
+router.get("/countByType", countByType);
 
 module.exports = router;

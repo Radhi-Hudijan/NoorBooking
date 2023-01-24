@@ -20,7 +20,7 @@ const Featured = () => {
               className={style.featureImg}
             />
             <div className={style.featuredTitles}>
-              <h1>Manchester</h1>
+              <h1>Kuala Lumpur</h1>
               <h2>{data[0]} properties</h2>
             </div>
           </div>
@@ -32,7 +32,7 @@ const Featured = () => {
               className={style.featureImg}
             />
             <div className={style.featuredTitles}>
-              <h1>Leeds</h1>
+              <h1>Langkawi</h1>
               <h2>{data[1]} properties</h2>
             </div>
           </div>
@@ -44,7 +44,7 @@ const Featured = () => {
               className={style.featureImg}
             />
             <div className={style.featuredTitles}>
-              <h1>Reading</h1>
+              <h1>Penang</h1>
               <h2>{data[2]} properties</h2>
             </div>
           </div>
