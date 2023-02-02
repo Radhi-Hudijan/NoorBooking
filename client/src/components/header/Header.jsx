@@ -16,6 +16,7 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -48,6 +49,7 @@ const Header = ({ type }) => {
   };
 
   const { dispatch } = useContext(SearchContext);
+  const { user } = useContext(AuthContext);
 
   const handleSearch = () => {
     dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
@@ -91,7 +93,12 @@ const Header = ({ type }) => {
             <p className={style.headerDesc}>
               Search low prices on hotels, homes and much more...
             </p>
-            <button className={style.headerButton}> Sign in / Register</button>
+            {!user && (
+              <button className={style.headerButton}>
+                {" "}
+                Sign in / Register
+              </button>
+            )}
             <div className={style.headerSearch}>
               <div className={style.headerSearchItem}>
                 <FontAwesomeIcon icon={faBed} className={style.headerIcon} />
