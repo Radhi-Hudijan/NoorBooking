@@ -20,6 +20,7 @@ import style from "./Hotel.module.css";
 const Hotel = () => {
   const location = useLocation();
 
+  // get the id from the hotel path
   const id = location.pathname.split("/")[2];
 
   const [slideNumber, setSlideNumber] = useState(0);

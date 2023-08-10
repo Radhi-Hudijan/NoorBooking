@@ -21,7 +21,6 @@ const updateHotel = async (req, res, next) => {
       { new: true }
     );
 
-    console.log(updatedHotel);
     res.status(200).json(updatedHotel);
   } catch (error) {
     next(error);
@@ -31,7 +30,6 @@ const updateHotel = async (req, res, next) => {
 const deleteHotel = async (req, res, next) => {
   try {
     await Hotel.findByIdAndDelete(req.params.id);
-
     res.status(200).json("hotel deleted successfully");
   } catch (error) {
     next(error);

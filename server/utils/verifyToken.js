@@ -6,16 +6,19 @@ const verifyToken = (req, res, next) => {
 
   if (!token) return next(createError(401, "You are not authenticated"));
 
+  // verify token from cookies
   jwt.verify(token, process.env.JWT, (err, user) => {
     if (err) return next(createError(403, "Token is not valid"));
-
+    // if token is valid , assign a new property with data in the token
     req.user = user;
     next();
   });
 };
 
+// middleware to check if user is same with user in the token
 const verifyUser = (req, res, next) => {
   verifyToken(req, res, () => {
+    //compare user id's
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next();
     } else {
@@ -24,6 +27,7 @@ const verifyUser = (req, res, next) => {
   });
 };
 
+// middleware to check if user is admin
 const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, next, () => {
     if (req.user.isAdmin) {

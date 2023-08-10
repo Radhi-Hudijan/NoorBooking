@@ -40,6 +40,7 @@ const login = async (req, res, next) => {
 
     const { password, isAdmin, ...otherDetails } = user._doc;
 
+    // install cookie-parser library to send the token as cookie
     res
       .status(200)
       .cookie("access_token", token, { httpOnly: true })
