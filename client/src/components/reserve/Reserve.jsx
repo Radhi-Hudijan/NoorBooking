@@ -4,8 +4,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/SearchContext";
-import useFetch from "../hooks/useFetch";
+import { SearchContext } from "../../context/SearchContext";
+import useFetch from "../../hooks/useFetch";
 import style from "./Reserve.module.css";
 
 const Reserve = ({ setOpen, hotelId }) => {

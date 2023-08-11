@@ -14,7 +14,7 @@ import NavBar from "../../components/navbar/NavBar";
 import { AuthContext } from "../../context/AuthContext";
 import { SearchContext } from "../../context/SearchContext";
 import useFetch from "../../hooks/useFetch";
-import Reserve from "../../reserve/Reserve";
+import Reserve from "../../components/reserve/Reserve";
 import style from "./Hotel.module.css";
 
 const Hotel = () => {
@@ -31,9 +31,11 @@ const Hotel = () => {
 
   const { dates, options } = useContext(SearchContext);
 
+  // import user details
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  //count the day difference
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   const dayDifference = (date1, date2) => {
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
@@ -146,7 +148,7 @@ const Hotel = () => {
                   <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
                   nights)
                 </h2>
-                <button>Reserve or Book Now!</button>
+                <button onClick={handleClick}>Reserve or Book Now!</button>
               </div>
             </div>
           </div>
