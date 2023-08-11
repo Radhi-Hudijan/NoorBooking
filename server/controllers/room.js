@@ -43,6 +43,7 @@ const updateRoomAvailability = async (req, res, next) => {
       { "roomNumbers._id": req.params.id },
       {
         $push: {
+          //update nested property
           "roomNumbers.$.unavailableDates": req.body.dates,
         },
       }

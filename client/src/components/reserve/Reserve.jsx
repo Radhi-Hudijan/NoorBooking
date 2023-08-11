@@ -13,10 +13,12 @@ const Reserve = ({ setOpen, hotelId }) => {
   const { data, loading, error } = useFetch(`/api/hotels/rooms/${hotelId}`);
   const { dates } = useContext(SearchContext);
 
+  // getting the dates selected from a range
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
 
+    // use getTime() to get the time stamp
     const date = new Date(start.getTime());
 
     let list = [];
@@ -31,6 +33,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const allDates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
+  //check if the room number is available
   const isAvailable = (roomNumber) => {
     const isFound = roomNumber.unavailableDates.some((date) =>
       allDates.includes(new Date(date).getTime())
@@ -51,6 +54,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const navigate = useNavigate();
 
+  //update the room availabilities
   const handleClick = async () => {
     try {
       await Promise.all(
@@ -91,6 +95,7 @@ const Reserve = ({ setOpen, hotelId }) => {
                 <div className={style.rPrice}>{item.price}</div>
               </div>
 
+              {/* show room numbers from the same room name */}
               <div className={style.rSelectRooms}>
                 {item.roomNumbers.map((roomNumber) => (
                   <div className={style.room}>
